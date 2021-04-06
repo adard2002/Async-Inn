@@ -6,15 +6,15 @@
 - 4/5/21
 
 # Image of ERD
-![Async-InnERD](../assets/Lab11ERD.jpg)
+![Async-InnERD](assets/Lab11ERD.jpg)
 
 
 # Requirements in Lab11: 
 You have been tasked with creating a web based API for a local hotel chain. Here are the requirements that you obtained from your client during your exploration and requirements meeting.
 
-- The hotel is named “Async Inn” and has many nationwide locations. Each location will have a name, city, state, address, and phone number.
-- Async Inn prides themselves on their unique layout designs of each hotel room. They advertise as it being your “apartment for the night”. This means they have invested a lot of resources into how each room looks and feels. Some have one bedroom, others have 2 bedrooms, while a few are more of a cozy studio. The team mentioned that they like to label each room with a nickname to better tell the difference between each of the layouts and amenities each room has to offer. (for example, the Seattle location has two 2-bedroom suites, but one is named “Seahawks Snooze” while the other is named “Restful Rainier”, each with their own amenities.)
-- They also take pride in the amenities that each room has to offer. This can consist of features like “air conditioning”, “coffee maker”, “ocean view”, “mini bar”, the list goes on…They requested that they would like the amenities associated with each of the rooms as they do vary.
+- The hotel is named ï¿½Async Innï¿½ and has many nationwide locations. Each location will have a name, city, state, address, and phone number.
+- Async Inn prides themselves on their unique layout designs of each hotel room. They advertise as it being your ï¿½apartment for the nightï¿½. This means they have invested a lot of resources into how each room looks and feels. Some have one bedroom, others have 2 bedrooms, while a few are more of a cozy studio. The team mentioned that they like to label each room with a nickname to better tell the difference between each of the layouts and amenities each room has to offer. (for example, the Seattle location has two 2-bedroom suites, but one is named ï¿½Seahawks Snoozeï¿½ while the other is named ï¿½Restful Rainierï¿½, each with their own amenities.)
+- They also take pride in the amenities that each room has to offer. This can consist of features like ï¿½air conditioningï¿½, ï¿½coffee makerï¿½, ï¿½ocean viewï¿½, ï¿½mini barï¿½, the list goes onï¿½They requested that they would like the amenities associated with each of the rooms as they do vary.
 - The rooms vary in price, per location, as well as per room number. They also have a few rooms that they want to advertise as pet friendly.
 - The number of rooms for each hotel varies. Some hotels have only a few rooms, while others may have dozens.
 

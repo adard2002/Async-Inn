@@ -15,20 +15,19 @@ namespace AsyncWeb.Controllers
     [ApiController]
     public class HotelsController : ControllerBase
     {
-        private readonly SchoolDbContext _context;
-        private readonly IHotelRepository studentRepository;
+        // private readonly SchoolDbContext _context;
+        private readonly IHotelRepository _hotel;
 
-        public HotelsController(SchoolDbContext context, IHotelRepository studentRepository)
+        public HotelsController(IHotelRepository hotel)
         {
-            _context = context;
-            this.studentRepository = studentRepository;
+            _hotel = hotel;
         }
 
         // GET: api/Hotels
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Hotel>>> GetHotel()
         {
-            var students = await studentRepository.GetAllHotel();
+            var students = await _hotel.GetAllHotel();
             return Ok(students);
             // return await _context.Hotel.ToListAsync();
         }
@@ -37,7 +36,7 @@ namespace AsyncWeb.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Hotel>> GetHotel(int id)
         {
-            var hotel = await _context.Hotels.FindAsync(id);
+            Hotel hotel = await _hotel.GetHotel(id);
 
             if (hotel == null)
             {

@@ -19,8 +19,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\AsyncInn\AsyncInn.csproj" />
-  </ItemGroup>
-
 </Project>

@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AsyncWeb.Models.Interfaces;
 
 namespace AsyncWeb
 {
@@ -30,8 +31,12 @@ namespace AsyncWeb
             services.AddDbContext<SchoolDbContext>(options => {
                 // Our DATABASE_URL from js days
                 string connectionString = Configuration.GetConnectionString("DefaultConnection");
+                if (connectionString == null)
+                    throw new InvalidOperationException("Connection string is not set.");
                 options.UseSqlServer(connectionString);
             });
+
+            services.AddTransient<IStudentRepository, DatabaseStudentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

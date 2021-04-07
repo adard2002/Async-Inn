@@ -37,7 +37,7 @@ namespace AsyncWeb.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Hotel>> GetHotel(int id)
         {
-            var hotel = await _context.Hotel.FindAsync(id);
+            var hotel = await _context.Hotels.FindAsync(id);
 
             if (hotel == null)
             {
@@ -83,9 +83,8 @@ namespace AsyncWeb.Controllers
         [HttpPost]
         public async Task<ActionResult<Hotel>> PostHotel(Hotel hotel)
         {
-            // _context.Hotel.Add(hotel);
-            // await _context.SaveChangesAsync();
-            await hotelRepository.CreateHotel(hotel);
+            _context.Hotels.Add(hotel);
+            await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetHotel", new { id = hotel.Id }, hotel);
         }
@@ -94,13 +93,13 @@ namespace AsyncWeb.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteHotel(int id)
         {
-            var hotel = await _context.Hotel.FindAsync(id);
+            var hotel = await _context.Hotels.FindAsync(id);
             if (hotel == null)
             {
                 return NotFound();
             }
 
-            _context.Hotel.Remove(hotel);
+            _context.Hotels.Remove(hotel);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -108,7 +107,7 @@ namespace AsyncWeb.Controllers
 
         private bool HotelExists(int id)
         {
-            return _context.Hotel.Any(e => e.Id == id);
+            return _context.Hotels.Any(e => e.Id == id);
         }
     }
 }

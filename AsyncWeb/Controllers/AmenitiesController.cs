@@ -25,14 +25,14 @@ namespace AsyncWeb.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Amenities>>> GetAmenities()
         {
-            return await _context.Amenities.ToListAsync();
+            return await _context.GetAmenities().ToListAsync();
         }
 
         // GET: api/Amenities/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Amenities>> GetAmenities(int id)
         {
-            var amenities = await _context.Amenities.FindAsync(id);
+            var amenities = await _context.GetAmenities().FindAsync(id);
 
             if (amenities == null)
             {
@@ -78,7 +78,7 @@ namespace AsyncWeb.Controllers
         [HttpPost]
         public async Task<ActionResult<Amenities>> PostAmenities(Amenities amenities)
         {
-            _context.Amenities.Add(amenities);
+            _context.GetAmenities().Add(amenities);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetAmenities", new { id = amenities.Id }, amenities);
@@ -88,13 +88,13 @@ namespace AsyncWeb.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAmenities(int id)
         {
-            var amenities = await _context.Amenities.FindAsync(id);
+            var amenities = await _context.GetAmenities().FindAsync(id);
             if (amenities == null)
             {
                 return NotFound();
             }
 
-            _context.Amenities.Remove(amenities);
+            _context.GetAmenities().Remove(amenities);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -102,7 +102,7 @@ namespace AsyncWeb.Controllers
 
         private bool AmenitiesExists(int id)
         {
-            return _context.Amenities.Any(e => e.Id == id);
+            return _context.GetAmenities().Any(e => e.Id == id);
         }
     }
 }

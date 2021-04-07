@@ -10,7 +10,7 @@ namespace AsyncWeb.Models.Interfaces
 {
     public interface IHotelRepository
     {
-        Task<IEnumerable<Hotel>> GetAllHotels();
+        Task<IEnumerable<Hotel>> GetAllHotel();
 
         Task CreateHotel(Hotel hotel);
 
@@ -35,7 +35,7 @@ namespace AsyncWeb.Models.Interfaces
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Hotel>> GetAllHotels()
+        public async Task<IEnumerable<Hotel>> GetAllHotel()
         {
             /*
             return new[]

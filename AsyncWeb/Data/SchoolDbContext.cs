@@ -9,13 +9,27 @@ namespace AsyncWeb.Data
 {
     public class SchoolDbContext : DbContext
     {
-        
+        internal readonly object Hotels;
+
+        internal readonly object Rooms;
+
+        internal readonly object Amenities;
+
         public SchoolDbContext(DbContextOptions options) : base(options)
         {
         }
-        
 
-         public DbSet<Amenities> Amenities { get; set; }
+        private DbSet<Amenities> amenities;
+
+        public DbSet<Amenities> GetAmenities()
+        {
+            return amenities;
+        }
+
+        public void SetAmenities(DbSet<Amenities> value)
+        {
+            amenities = value;
+        }
 
         public DbSet<Hotel> Hotel { get; set; }
         

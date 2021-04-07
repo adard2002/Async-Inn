@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AsyncWeb.Data;
 using AsyncWeb.Models;
+using AsyncWeb.Models.Interfaces;
 
 namespace AsyncWeb.Controllers
 {
@@ -14,25 +15,28 @@ namespace AsyncWeb.Controllers
     [ApiController]
     public class HotelsController : ControllerBase
     {
-        private readonly SchoolDbContext _context;
+        // private readonly SchoolDbContext _context;
+        private readonly IHotelRepository _hotel;
 
-        public HotelsController(SchoolDbContext context)
+        public HotelsController(IHotelRepository hotel)
         {
-            _context = context;
+            _hotel = hotel;
         }
 
         // GET: api/Hotels
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Hotel>>> GetHotel()
         {
-            return await _context.Hotel.ToListAsync();
+            var students = await _hotel.GetAllHotel();
+            return Ok(students);
+            // return await _context.Hotel.ToListAsync();
         }
 
         // GET: api/Hotels/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Hotel>> GetHotel(int id)
         {
-            var hotel = await _context.Hotel.FindAsync(id);
+            Hotel hotel = await _hotel.GetHotel(id);
 
             if (hotel == null)
             {
@@ -78,7 +82,7 @@ namespace AsyncWeb.Controllers
         [HttpPost]
         public async Task<ActionResult<Hotel>> PostHotel(Hotel hotel)
         {
-            _context.Hotel.Add(hotel);
+            _context.Hotels.Add(hotel);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetHotel", new { id = hotel.Id }, hotel);
@@ -88,13 +92,13 @@ namespace AsyncWeb.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteHotel(int id)
         {
-            var hotel = await _context.Hotel.FindAsync(id);
+            var hotel = await _context.Hotels.FindAsync(id);
             if (hotel == null)
             {
                 return NotFound();
             }
 
-            _context.Hotel.Remove(hotel);
+            _context.Hotels.Remove(hotel);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -102,7 +106,7 @@ namespace AsyncWeb.Controllers
 
         private bool HotelExists(int id)
         {
-            return _context.Hotel.Any(e => e.Id == id);
+            return _context.Hotels.Any(e => e.Id == id);
         }
     }
 }

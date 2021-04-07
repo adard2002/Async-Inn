@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AsyncWeb.Data;
 using AsyncWeb.Models;
+using AsyncWeb.Models.Interfaces;
 
 namespace AsyncWeb.Controllers
 {
@@ -15,24 +16,26 @@ namespace AsyncWeb.Controllers
     public class RoomsController : ControllerBase
     {
         private readonly SchoolDbContext _context;
+        private readonly IRoomRepository roomRepository;
 
-        public RoomsController(SchoolDbContext context)
+        public RoomsController(SchoolDbContext context, IRoomRepository roomRepository)
         {
             _context = context;
+            this.roomRepository = roomRepository;
         }
 
         // GET: api/Rooms
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Room>>> GetRoom()
         {
-            return await _context.Room.ToListAsync();
+            return await _context.Rooms.ToListAsync();
         }
 
         // GET: api/Rooms/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Room>> GetRoom(int id)
         {
-            var room = await _context.Room.FindAsync(id);
+            var room = await _context.Rooms.FindAsync(id);
 
             if (room == null)
             {
@@ -78,7 +81,7 @@ namespace AsyncWeb.Controllers
         [HttpPost]
         public async Task<ActionResult<Room>> PostRoom(Room room)
         {
-            _context.Room.Add(room);
+            _context.Rooms.Add(room);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetRoom", new { id = room.Id }, room);
@@ -88,13 +91,13 @@ namespace AsyncWeb.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRoom(int id)
         {
-            var room = await _context.Room.FindAsync(id);
+            var room = await _context.Rooms.FindAsync(id);
             if (room == null)
             {
                 return NotFound();
             }
 
-            _context.Room.Remove(room);
+            _context.Rooms.Remove(room);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -102,7 +105,7 @@ namespace AsyncWeb.Controllers
 
         private bool RoomExists(int id)
         {
-            return _context.Room.Any(e => e.Id == id);
+            return _context.Rooms.Any(e => e.Id == id);
         }
     }
 }

@@ -9,18 +9,18 @@ namespace AsyncWeb.Data
 {
     public class SchoolDbContext : DbContext
     {
-        
+
         public SchoolDbContext(DbContextOptions options) : base(options)
         {
         }
-        
 
-         public DbSet<Amenities> Amenities { get; set; }
+        public DbSet<Amenities> Amenities { get; set; }
 
-        public DbSet<Hotel> Hotel { get; set; }
+
+        public DbSet<Hotel> Hotels { get; set; }
         
          
-         public DbSet<Room> Room { get; set; }
+         public DbSet<Room> Rooms { get; set; }
 
           protected override void OnModelCreating(ModelBuilder modelBuilder)
          {

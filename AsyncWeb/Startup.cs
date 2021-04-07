@@ -36,7 +36,7 @@ namespace AsyncWeb
                 options.UseSqlServer(connectionString);
             });
 
-            services.AddTransient<IStudentRepository, DatabaseStudentRepository>();
+            services.AddTransient<IHotelRepository, DatabaseStudentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

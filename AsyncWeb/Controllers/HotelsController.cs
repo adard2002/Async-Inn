@@ -16,9 +16,9 @@ namespace AsyncWeb.Controllers
     public class HotelsController : ControllerBase
     {
         private readonly SchoolDbContext _context;
-        private readonly IStudentRepository studentRepository;
+        private readonly IHotelRepository studentRepository;
 
-        public HotelsController(SchoolDbContext context, IStudentRepository studentRepository)
+        public HotelsController(SchoolDbContext context, IHotelRepository studentRepository)
         {
             _context = context;
             this.studentRepository = studentRepository;
@@ -28,7 +28,9 @@ namespace AsyncWeb.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Hotel>>> GetHotel()
         {
-            return await _context.Hotel.ToListAsync();
+            var students = await studentRepository.GetAllHotels();
+            return Ok(students);
+            // return await _context.Hotel.ToListAsync();
         }
 
         // GET: api/Hotels/5
@@ -81,8 +83,9 @@ namespace AsyncWeb.Controllers
         [HttpPost]
         public async Task<ActionResult<Hotel>> PostHotel(Hotel hotel)
         {
-            _context.Hotel.Add(hotel);
-            await _context.SaveChangesAsync();
+            // _context.Hotel.Add(hotel);
+            // await _context.SaveChangesAsync();
+            await hotelRepository.CreateHotel(hotel);
 
             return CreatedAtAction("GetHotel", new { id = hotel.Id }, hotel);
         }

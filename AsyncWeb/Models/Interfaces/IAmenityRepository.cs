@@ -5,12 +5,7 @@ using System.Threading.Tasks;
 
 namespace AsyncWeb.Models.Interfaces
 {
-    public interface IStudentRepository
+    interface Interface
     {
-    }
-
-    public class DatabaseStudentRepository : IStudentRepository
-    {
-
     }
 }

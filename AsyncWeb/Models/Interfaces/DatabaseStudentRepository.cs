@@ -22,7 +22,18 @@ namespace AsyncWeb.Models.Interfaces
             await _context.SaveChangesAsync();
         }
 
-        public Task DeleteHotel(int id)
+        public async Task<bool> DeleteHotel(int id)
+        {
+            Hotel hotel = await GetHotel(id);
+            if (hotel == null)
+            {
+                return false;
+            }
+            await DeleteHotel(hotel);
+            return true;
+        }
+
+        private Task DeleteHotel(Hotel hotel)
         {
             throw new NotImplementedException();
         }
@@ -51,7 +62,29 @@ namespace AsyncWeb.Models.Interfaces
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateHotel(Hotel hotel)
+        public async Task<bool> UpdateHotel(Hotel hotel)
+        {
+            _context.Entry(hotel).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!HotelExists(hotel.Id))
+                {
+                    return false;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+        }
+        private bool HotelExists(int id)
         {
             throw new NotImplementedException();
         }

@@ -103,9 +103,10 @@ namespace AsyncWeb.Data
                     Name = "MuchMareofNight"
                 });
         }
-        
 
-
-
+        internal static Task<bool> UpdateHotel(Hotel hotel)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

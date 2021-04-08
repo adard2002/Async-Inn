@@ -12,7 +12,7 @@ namespace AsyncWeb.Models.Interfaces
         Task CreateHotel(Hotel hotel);
 
         Task<Hotel> GetHotel(int id);
-        Task DeleteHotel(int id);
+        Task<bool> DeleteHotel(int id);
 
         Task PutHotel(Hotel hotel);
         Task<bool> UpdateHotel(Hotel hotel);

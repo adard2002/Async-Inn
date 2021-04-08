@@ -15,10 +15,10 @@ namespace AsyncWeb.Controllers
     [ApiController]
     public class RoomsController : ControllerBase
     {
-        private readonly SchoolDbContext _context;
+        private readonly HotelDbContext _context;
         private readonly IRoomRepository roomRepository;
 
-        public RoomsController(SchoolDbContext context, IRoomRepository roomRepository)
+        public RoomsController(HotelDbContext context, IRoomRepository roomRepository)
         {
             _context = context;
             this.roomRepository = roomRepository;

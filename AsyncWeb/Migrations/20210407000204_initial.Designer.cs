@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AsyncWeb.Migrations
 {
-    [DbContext(typeof(SchoolDbContext))]
+    [DbContext(typeof(HotelDbContext))]
     [Migration("20210407000204_initial")]
     partial class initial
     {

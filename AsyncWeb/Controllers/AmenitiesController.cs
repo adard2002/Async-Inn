@@ -14,9 +14,9 @@ namespace AsyncWeb.Controllers
     [ApiController]
     public class AmenitiesController : ControllerBase
     {
-        private readonly SchoolDbContext _context;
+        private readonly HotelDbContext _context;
 
-        public AmenitiesController(SchoolDbContext context)
+        public AmenitiesController(HotelDbContext context)
         {
             _context = context;
         }

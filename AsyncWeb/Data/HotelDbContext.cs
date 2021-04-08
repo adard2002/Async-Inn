@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace AsyncWeb.Data
 {
-    public class SchoolDbContext : DbContext
+    public class HotelDbContext : DbContext
     {
 
-        public SchoolDbContext(DbContextOptions options) : base(options)
+        public HotelDbContext(DbContextOptions options) : base(options)
         {
         }
 
@@ -103,8 +103,6 @@ namespace AsyncWeb.Data
                     Name = "MuchMareofNight"
                 });
         }
-        
-
 
 
     }

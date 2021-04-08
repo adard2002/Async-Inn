@@ -58,7 +58,7 @@ namespace AsyncWeb.Controllers
                 return BadRequest();
             }
 
-            if (!await SchoolDbContext.UpdateHotel(hotel))
+            if (!await _hotel.UpdateHotel(hotel))
             {
                 return NotFound();
             }

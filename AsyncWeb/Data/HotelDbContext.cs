@@ -9,16 +9,13 @@ namespace AsyncWeb.Data
 {
     public class HotelDbContext : DbContext
     {
-
         public HotelDbContext(DbContextOptions options) : base(options)
         {
         }
 
         public DbSet<Amenities> Amenities { get; set; }
 
-
         public DbSet<Hotel> Hotels { get; set; }
-        
          
          public DbSet<Room> Rooms { get; set; }
 
@@ -60,7 +57,6 @@ namespace AsyncWeb.Data
                   Phone = "111 222 3334"
               });
             
-        
             modelBuilder.Entity<Room>().HasData(
               new Room
               {
@@ -82,7 +78,6 @@ namespace AsyncWeb.Data
                   Name = "Night",
                   Layout = 0
               });
-
 
             modelBuilder.Entity<Amenities>().HasData(
                 new Amenities

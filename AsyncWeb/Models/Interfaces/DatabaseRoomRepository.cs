@@ -8,9 +8,9 @@ namespace AsyncWeb.Models.Interfaces
 {
     public class DatabaseRoomRepository : IRoomRepository
     {
-        private readonly SchoolDbContext _context;
+        private readonly HotelDbContext _context;
 
-        public DatabaseRoomRepository(SchoolDbContext context)
+        public DatabaseRoomRepository(HotelDbContext context)
         {
             _context = context;
         }

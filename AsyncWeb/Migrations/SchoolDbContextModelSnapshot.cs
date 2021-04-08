@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AsyncWeb.Migrations
 {
-    [DbContext(typeof(SchoolDbContext))]
+    [DbContext(typeof(HotelDbContext))]
     partial class SchoolDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

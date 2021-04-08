@@ -28,7 +28,7 @@ namespace AsyncWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<SchoolDbContext>(options => {
+            services.AddDbContext<HotelDbContext>(options => {
                 // Our DATABASE_URL from js days
                 string connectionString = Configuration.GetConnectionString("DefaultConnection");
                 if (connectionString == null)

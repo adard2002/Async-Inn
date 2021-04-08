@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace AsyncWeb.Models.Interfaces
 {
-    public class DatabaseStudentRepository : IHotelRepository
+    public class DatabaseHotelRepository : IHotelRepository
     {
         private readonly SchoolDbContext _context;
 
 
-        public DatabaseStudentRepository(SchoolDbContext context)
+        public DatabaseHotelRepository(SchoolDbContext context)
         {
             _context = context;
         }

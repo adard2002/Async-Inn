@@ -62,10 +62,32 @@ namespace AsyncWeb.Models.Interfaces
 
 
         // ====== Amenities ======
+
+        // Add the logic for the above methods (add/remove amenities) into your RoomRepository.cs Service
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
-
-
-  }
+}
 
 
 

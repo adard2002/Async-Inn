@@ -7,5 +7,18 @@ namespace AsyncWeb.Models.Interfaces
 {
     interface IHotelRoom
     {
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

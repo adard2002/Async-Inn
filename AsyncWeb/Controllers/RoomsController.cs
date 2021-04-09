@@ -103,34 +103,42 @@ namespace AsyncWeb.Controllers
             return NoContent();
         }
 
-        private bool RoomExists(int id)
-        {
-            return _context.Rooms.Any(e => e.Id == id);
-        }
+
 
 
         // ====== Adding Amenities to Hotel ======
 
+        // TODO: Create 2 routes. 1 for POST and 1 for DELETE
+        [Route("{roomId}/Amenity/{amenityId}")] // check keiths code on the repo
+
+
+        [HttpPost]
+        public async Task<ActionResult> PostAmenity(Amenities amenity)
+        {
+            _context.Amenities.Add(amenity);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetAmenity", new { id = amenity.Id }, amenity);
+        }
 
 
 
+        [Route("{roomId}/Amenity/{amenityId}")] // check keiths code on the repo
 
 
+        [HttpPost]
+        public async Task<ActionResult> DeleteAmenity(Amenities amenity)
+        {
+            _context.Amenities.Remove(amenity);
+            await _context.SaveChangesAsync();
 
+            return CreatedAtAction("DeleteAmenity", new { id = amenity.Id }, amenity);
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+        private bool RoomExists(int id)
+        {
+            return _context.Rooms.Any(e => e.Id == id);
+        }
 
 
     }

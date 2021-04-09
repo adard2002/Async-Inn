@@ -11,6 +11,22 @@ namespace AsyncWeb.Models.Interfaces
         Task<Room> GetRoom(int id);
         Task<bool> UpdateRoom(Room room);
 
+
+
+
+        // AddAmenityToRoom(int roomId, int amenityId)
+        Task CreateAmenity(int roomId, int amenityId);
+
+
+        // RemoveAmentityFromRoom(int roomId, int amenityId)
+        Task DeleteAmenity(int roomId, int amenityId);
+
+
+
+
+
+
+
     }
 
 

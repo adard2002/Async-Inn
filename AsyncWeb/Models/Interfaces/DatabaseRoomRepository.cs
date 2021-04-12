@@ -21,7 +21,7 @@ namespace AsyncWeb.Models.Interfaces
             await _context.SaveChangesAsync();
         }
 
-        public Task DeleteAmenity(int roomId, int amenityId)
+        public Task RemoveAmenityFromRoom(int roomId, int amenityId)
         {
             throw new NotImplementedException();
         }
@@ -71,7 +71,7 @@ namespace AsyncWeb.Models.Interfaces
         // Add the logic for the above methods (add/remove amenities) into your RoomRepository.cs Service
 
 
-        public Task CreateAmenity(int roomId, int amenityId)
+        public Task AddAmenityToRoom(int roomId, int amenityId)
         {
             throw new NotImplementedException();
         }

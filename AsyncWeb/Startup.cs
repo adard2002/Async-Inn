@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AsyncWeb.Models.Interfaces;
+using Microsoft.OpenApi.Models;
 
 namespace AsyncWeb
 {
@@ -28,6 +29,17 @@ namespace AsyncWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddSwaggerGen(options =>
+            {
+                // Make sure get the "using Statement"
+                options.SwaggerDoc("v1", new OpenApiInfo()
+                {
+                    Title = "School Demo",
+                    Version = "v1",
+                });
+            });
+
             services.AddDbContext<HotelDbContext>(options => {
                 // Our DATABASE_URL from js days
                 string connectionString = Configuration.GetConnectionString("DefaultConnection");
@@ -46,6 +58,10 @@ namespace AsyncWeb
             {
                 app.UseDeveloperExceptionPage();
             }
+            
+            app.UseSwagger(options => {
+                options.RouteTemplate = "/api/{documentName}/swagger.json";
+            });
 
             app.UseRouting();
 

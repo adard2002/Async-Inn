@@ -73,6 +73,11 @@ namespace AsyncWeb
                     await context.Response.WriteAsync($"Hello World from path {context.Request.Path}");
                 });
             });
+
+            app.UseSwaggerUI(options => {
+                options.SwaggerEndpoint("/api/v1/swagger.json", "Student Demo");
+                options.RoutePrefix = "docs";
+            });
         }
     }
 }

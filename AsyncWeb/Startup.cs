@@ -35,7 +35,7 @@ namespace AsyncWeb
                 // Make sure get the "using Statement"
                 options.SwaggerDoc("v1", new OpenApiInfo()
                 {
-                    Title = "School Demo",
+                    Title = "Async Inn",
                     Version = "v1",
                 });
             });

@@ -109,7 +109,7 @@ namespace AsyncWeb.Controllers
         // ====== Adding Amenities to Hotel ======
 
         // TODO: Create 2 routes. 1 for POST and 1 for DELETE
-        [Route("{roomId}/Amenity/{amenityId}")] // check keiths code on the repo
+        [Route("{int roomId}/amenity/{int amenityId}")] // check keiths code on the repo
 
 
         [HttpPost]
@@ -126,7 +126,7 @@ namespace AsyncWeb.Controllers
         [Route("{roomId}/Amenity/{amenityId}")] // check keiths code on the repo
 
 
-        [HttpPost]
+        [HttpDelete]
         public async Task<ActionResult> DeleteAmenity(Amenities amenity)
         {
             _context.Amenities.Remove(amenity);
@@ -135,6 +135,7 @@ namespace AsyncWeb.Controllers
             return CreatedAtAction("DeleteAmenity", new { id = amenity.Id }, amenity);
         }
 
+       
         private bool RoomExists(int id)
         {
             return _context.Rooms.Any(e => e.Id == id);

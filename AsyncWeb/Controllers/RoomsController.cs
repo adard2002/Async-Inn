@@ -47,7 +47,7 @@ namespace AsyncWeb.Controllers
 
         // PUT: api/Rooms/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("{id}")] // put means to update
         public async Task<IActionResult> PutRoom(int id, Room room)
         {
             if (id != room.Id)
@@ -78,7 +78,7 @@ namespace AsyncWeb.Controllers
 
         // POST: api/Rooms
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost] //post means to add
         public async Task<ActionResult<Room>> PostRoom(Room room)
         {
             _context.Rooms.Add(room);
@@ -113,26 +113,28 @@ namespace AsyncWeb.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult> PostAmenity(Amenities amenity)
+        public async Task<ActionResult> AddAmenityToRoom(int roomId, int amenityId)
         {
-            _context.Amenities.Add(amenity);
-            await _context.SaveChangesAsync();
+            if (!await roomRepository.AddAmenityToRoom(roomId, amenityId))
+            {
+                return NotFound();
+            }
 
-            return CreatedAtAction("GetAmenity", new { id = amenity.Id }, amenity);
+            return NoContent();
         }
-
 
 
         [Route("{roomId}/Amenity/{amenityId}")] // check keiths code on the repo
 
-
-        [HttpPost]
-        public async Task<ActionResult> DeleteAmenity(Amenities amenity)
+        [HttpDelete]
+        public async Task<ActionResult> DeleteAmenityFromRoom(int roomId, int amenityId)
         {
-            _context.Amenities.Remove(amenity);
-            await _context.SaveChangesAsync();
+            if (!await roomRepository.RemoveAmenityFromRoom(roomId, amenityId))
+            {
+                return NotFound();
+            }
 
-            return CreatedAtAction("DeleteAmenity", new { id = amenity.Id }, amenity);
+            return NoContent();
         }
 
         private bool RoomExists(int id)

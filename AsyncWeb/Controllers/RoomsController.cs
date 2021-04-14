@@ -113,7 +113,7 @@ namespace AsyncWeb.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult> AddAmenityToRoom(int roomId, int amenityId)
+        public async Task<IActionResult> AddAmenityToRoom(int roomId, int amenityId)
         {
             if (!await roomRepository.AddAmenityToRoom(roomId, amenityId))
             {
@@ -127,7 +127,7 @@ namespace AsyncWeb.Controllers
         [Route("{roomId}/Amenity/{amenityId}")] // check keiths code on the repo
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteAmenityFromRoom(int roomId, int amenityId)
+        public async Task<IActionResult> DeleteAmenityFromRoom(int roomId, int amenityId)
         {
             if (!await roomRepository.RemoveAmenityFromRoom(roomId, amenityId))
             {

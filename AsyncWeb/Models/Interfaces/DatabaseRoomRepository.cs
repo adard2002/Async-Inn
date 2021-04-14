@@ -76,8 +76,10 @@ namespace AsyncWeb.Models.Interfaces
             throw new NotImplementedException();
         }
 
-
-
+        public Task<bool> DeleteRoom(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

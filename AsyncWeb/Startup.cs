@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AsyncWeb.Models.Interfaces;
+using Microsoft.OpenApi.Models;
 
 namespace AsyncWeb
 {
@@ -28,6 +29,17 @@ namespace AsyncWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddSwaggerGen(options =>
+            {
+                // Make sure get the "using Statement"
+                options.SwaggerDoc("v1", new OpenApiInfo()
+                {
+                    Title = "Async Inn",
+                    Version = "v1",
+                });
+            });
+
             services.AddDbContext<HotelDbContext>(options => {
                 // Our DATABASE_URL from js days
                 string connectionString = Configuration.GetConnectionString("DefaultConnection");
@@ -46,6 +58,15 @@ namespace AsyncWeb
             {
                 app.UseDeveloperExceptionPage();
             }
+            
+            app.UseSwagger(options => {
+                options.RouteTemplate = "/api/{documentName}/swagger.json";
+            });
+
+            app.UseSwaggerUI(options => {
+                options.SwaggerEndpoint("/api/v1/swagger.json", "Student Demo");
+                options.RoutePrefix = "docs";
+            });
 
             app.UseRouting();
 
@@ -56,6 +77,11 @@ namespace AsyncWeb
                 {
                     await context.Response.WriteAsync($"Hello World from path {context.Request.Path}");
                 });
+            });
+
+            app.UseSwaggerUI(options => {
+                options.SwaggerEndpoint("/api/v1/swagger.json", "Student Demo");
+                options.RoutePrefix = "docs";
             });
         }
     }

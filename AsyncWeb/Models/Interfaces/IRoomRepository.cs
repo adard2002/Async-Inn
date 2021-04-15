@@ -13,12 +13,9 @@ namespace AsyncWeb.Models.Interfaces
 
 
 
-
-        // AddAmenityToRoom(int roomId, int amenityId)
         Task AddAmenityToRoom(int roomId, int amenityId);
 
 
-        // RemoveAmentityFromRoom(int roomId, int amenityId)
         Task RemoveAmenityFromRoom(int roomId, int amenityId);
 
 

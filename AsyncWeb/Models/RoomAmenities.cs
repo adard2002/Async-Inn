@@ -19,6 +19,7 @@ namespace AsyncWeb.Models
         [StringLength(100)]
         public string Room { get; set; }
 
+        
 
     }
 }

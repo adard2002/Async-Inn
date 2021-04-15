@@ -1,4 +1,6 @@
 ﻿using AsyncWeb.Models;
+using AsyncWeb.Models.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AsyncWeb.Data
 {
-    public class HotelDbContext : DbContext
+    public class HotelDbContext : IdentityDbContext<ApplicationUser>
     {
         public HotelDbContext(DbContextOptions options) : base(options)
         {
@@ -21,7 +23,7 @@ namespace AsyncWeb.Data
 
           protected override void OnModelCreating(ModelBuilder modelBuilder)
          {
-
+            base.OnModelCreating(modelBuilder);
             
             modelBuilder.Entity<Hotel>().HasData(
               new Hotel
@@ -98,6 +100,11 @@ namespace AsyncWeb.Data
                     Name = "MuchMareofNight"
                 });
         }
+
+
+
+
+
 
 
     }

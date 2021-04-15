@@ -96,6 +96,7 @@ namespace AsyncWeb.Controllers
         public async Task<IActionResult> AddAmenityToRoom(int roomId, int amenityId)
         {
             if (!await _roomRepository.AddAmenityToRoom(roomId, amenityId))
+
             {
                 return NotFound();
             }
@@ -115,6 +116,7 @@ namespace AsyncWeb.Controllers
             }
 
             return NoContent();
+
         }
 
 

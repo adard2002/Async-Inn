@@ -10,6 +10,6 @@ namespace AsyncWeb.Models.Interfaces
         Task<IEnumerable<Amenities>> GetAllAmenities();
         Task CreateAmenity(Amenities amenities);
         Task<Amenities> GetAmenity(int id);
-        Task<bool> UpdateAmenity(Amenities amenities);
+        Task<bool> AddAmenityToRoom(Amenities amenities);
     }
 }

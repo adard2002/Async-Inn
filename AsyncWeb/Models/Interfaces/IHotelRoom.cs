@@ -5,8 +5,13 @@ using System.Threading.Tasks;
 
 namespace AsyncWeb.Models.Interfaces
 {
+    /*
+    [ServiceContract]
     public interface IHotelRoom
     {
+
+        [OperationContract]
+        HotelRoom Add(double n1, double n2);
 
 
 
@@ -20,4 +25,5 @@ namespace AsyncWeb.Models.Interfaces
 
 
     }
+    */
 }

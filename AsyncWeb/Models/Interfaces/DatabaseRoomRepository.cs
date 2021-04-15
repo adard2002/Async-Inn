@@ -55,6 +55,10 @@ namespace AsyncWeb.Models.Interfaces
                 }
             }
         }
+        public Task<bool> DeleteRoom(int id)
+        {
+            throw new NotImplementedException();
+        }
 
         private bool RoomExists(int id)
         {
@@ -66,20 +70,32 @@ namespace AsyncWeb.Models.Interfaces
         // ====== Amenities ======
 
         // Add the logic for the methods (add/remove amenities) into your RoomRepository.cs Service
-        public Task RemoveAmenityFromRoom(int roomId, int amenityId)
+        public async Task<bool> RemoveAmenityFromRoom(int roomId, int amenityId)
         {
-            throw new NotImplementedException();
+            // Checks if roomId/amenityId exist and if they don't it will return false
+            var amenities = await _context.Amenities.FindAsync(roomId, amenityId);
+            if (amenities == null)
+                return false;
+
+            _context.Amenities.Add(amenities);
+            await _context.SaveChangesAsync();
+
+            return true;
         }
 
-        public Task AddAmenityToRoom(int roomId, int amenityId)
+        public async Task<bool> AddAmenityToRoom(int roomId, int amenityId)
         {
-            throw new NotImplementedException();
+            var amenities = await _context.Amenities.FindAsync(roomId, amenityId);
+            if (amenities == null)
+                return false;
+
+            _context.Amenities.Remove(amenities);
+            await _context.SaveChangesAsync();
+
+            return true;
         }
 
-        public Task<bool> DeleteRoom(int id)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }
 

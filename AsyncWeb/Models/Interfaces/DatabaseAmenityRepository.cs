@@ -54,6 +54,11 @@ namespace AsyncWeb.Models.Interfaces
             }
         }
 
+        Task<bool> IAmenityRepository.AddAmenityToRoom(Amenities amenities)
+        {
+            throw new System.NotImplementedException();
+        }
+
         private bool AmentityExists(int id)
         {
             return _context.Amenities.Any(e => e.Id == id);

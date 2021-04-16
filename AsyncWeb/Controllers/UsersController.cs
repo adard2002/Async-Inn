@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AsyncWeb.Models.Api;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,5 +12,9 @@ namespace AsyncWeb.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        public async Task<IActionResult> Register(RegisterData data)
+        {
+            return Ok();
+        }
     }
 }

@@ -12,6 +12,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AsyncWeb.Models.Interfaces;
 using Microsoft.OpenApi.Models;
+using AsyncWeb.Models.Identity;
+using Microsoft.AspNetCore.Identity;
 
 namespace AsyncWeb
 {
@@ -48,7 +50,22 @@ namespace AsyncWeb
                 options.UseSqlServer(connectionString);
             });
 
+
+            services
+                .AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+            })
+            .AddEntityFrameworkStores<HotelDbContext>();
+
             services.AddTransient<IHotelRepository, DatabaseHotelRepository>();
+            services.AddTransient<IAmenityRepository, DatabaseAmenityRepository>();
+            services.AddTransient<IRoomRepository, DatabaseRoomRepository>();
+        }
+
+        private void AddEntityFrameworkStores<T>()
+        {
+            throw new NotImplementedException();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,6 +100,8 @@ namespace AsyncWeb
                 options.SwaggerEndpoint("/api/v1/swagger.json", "Student Demo");
                 options.RoutePrefix = "docs";
             });
+            }
         }
     }
-}
+
+

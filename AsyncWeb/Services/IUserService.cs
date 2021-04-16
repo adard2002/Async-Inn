@@ -5,7 +5,13 @@ using System.Threading.Tasks;
 
 namespace AsyncWeb.Services
 {
-    public class IUserService
+    public interface IUserService
     {
+        Task<ApplicationUser> Register(RegisterData data, ModelStateDictionary modelState);
     }
+
+
+
+
+
 }
